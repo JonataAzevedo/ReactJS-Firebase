@@ -60,7 +60,6 @@ function App() {
     async function checkLogin(){
       onAuthStateChanged(auth, (user) => {
         if(user){
-          //usuario logado ele entra aqui
           console.log(user);
           setUser(true);
           setUserDetail({
@@ -69,7 +68,6 @@ function App() {
           })
 
         }else{
-          //nao possui nenhum user logado
           setUser(false);
           setUserDetail({})
         }
@@ -99,7 +97,7 @@ function App() {
       autor: autor,
     })
     .then(() => {
-      console.log("CADASTRADO COM SUCESSO")
+      console.log("Sucesso ao cadastrar")
       setAutor('');
       setTitulo('')
     })
@@ -140,7 +138,7 @@ function App() {
 
     })
     .catch((error) => {
-      console.log("DEU ALGUM ERRO AO BUSCAR")
+      console.log("Erro" + error)
     })
 
 
@@ -155,7 +153,7 @@ function App() {
       autor: autor
     })
     .then(() => {
-      console.log("POST ATUALIZADO!")
+      console.log("Post Atualizado")
       setIdPost('')
       setTitulo('')
       setAutor('')
@@ -172,7 +170,7 @@ function App() {
     const docRef = doc(db, "posts", id)
     await deleteDoc(docRef)
     .then(() =>{
-      alert("POST DELETADO COM SUCESSO!")
+      alert("Post Deletado")
     })
 
   }
@@ -180,7 +178,7 @@ function App() {
   async function novoUsuario(){
     await createUserWithEmailAndPassword(auth, email, senha)
     .then(() => {
-      console.log("CADASTRADO COM SUCESSO!")
+      console.log("Sucesso ao cadastrar")
     
       setEmail('')
       setSenha('')
@@ -199,7 +197,7 @@ function App() {
   async function logarUsuario(){
     await signInWithEmailAndPassword(auth, email, senha)
     .then((value) => {
-      console.log("USER LOGADO COM SUCESSO")
+      console.log("Entrou com sucesso")
       console.log(value.user);
 
       setUserDetail({
@@ -212,7 +210,7 @@ function App() {
       setSenha('')
     })
     .catch(() => {
-      console.log("ERRO AO FAZER O LOGIN")
+      console.log("Erro")
     })
   }
 
