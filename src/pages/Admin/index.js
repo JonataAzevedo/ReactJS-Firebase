@@ -4,7 +4,7 @@ import './admin.css';
 import { auth, db } from '../../firebaseConnection';
 import { signOut } from 'firebase/auth';
 
-import { addDoc, collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, query, orderBy, where, doc, deleteDoc } from 'firebase/firestore';
 
 export default function Admin() {
 
@@ -51,7 +51,8 @@ export default function Admin() {
 
         await addDoc(collection(db, "tarefas"), {
             tarefa: tarefaInput,
-            created: new Date()
+            created: new Date(),
+            userUid: user?.uid
         })
             .then(() => {
                 setTarefaInput('');
@@ -60,6 +61,11 @@ export default function Admin() {
                 console.log("Erro ao registrar " + e)
             })
     }
+
+    async function deleteTarefa(id){
+        const docRef = doc(db, "tarefas", id)
+        await deleteDoc(docRef)
+      }
 
     async function handleLogout() {
         await signOut(auth);
@@ -84,8 +90,7 @@ export default function Admin() {
                     <p>{item.tarefa}</p>
 
                     <div>
-                        <button>Editar</button>
-                        <button className='btn-delete'>Concluir</button>
+                        <button onClick={ () => deleteTarefa(item.id) } className="btn-delete">Concluir</button>
                     </div>
                 </article>
             ))}

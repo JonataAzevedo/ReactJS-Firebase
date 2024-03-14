@@ -13,6 +13,11 @@
     margin-bottom: 28px;
 }
 
+.btn-register:hover{
+    background-color: rgb(35, 116, 46);
+    color: #fff;
+}
+
 .list{
     width: 90%;
     max-width: 600px;
@@ -37,8 +42,13 @@
 }
 
 .btn-delete {
-    color: #ffcc23;
-    background-color: transparent;
+    color: #fff;
+    background-color: #3366FF;
+}
+
+.btn-delete:hover{
+    background-color: rgb(35, 116, 46);
+    color: #fff;
 }
 
 .btn-logout{

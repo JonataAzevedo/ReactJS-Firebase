@@ -11,12 +11,12 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  async function handleRegister(e){
+  function handleRegister(e){
 
     e.preventDefault();
 
     if(email !== '' && password !== ''){
-      await createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
       .then(()=> {
         navigate("/admin", { replace: true })
       })
